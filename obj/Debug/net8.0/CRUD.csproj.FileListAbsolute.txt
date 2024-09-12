@@ -278,3 +278,4 @@ D:\USMP\Programacion\Guia\CRUD\obj\Debug\net8.0\refint\CRUD.dll
 D:\USMP\Programacion\Guia\CRUD\obj\Debug\net8.0\CRUD.pdb
 D:\USMP\Programacion\Guia\CRUD\obj\Debug\net8.0\CRUD.genruntimeconfig.cache
 D:\USMP\Programacion\Guia\CRUD\obj\Debug\net8.0\ref\CRUD.dll
+C:\Users\USUARIO\OneDrive\Escritorio\CRUD\obj\Debug\net8.0\CRUD.sourcelink.json

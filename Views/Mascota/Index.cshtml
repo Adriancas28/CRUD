@@ -1,0 +1,166 @@
+@model CRUD.ViewModel.MascotaViewModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        /* Title Styling */
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        /* Table Styling */
+        .custom-table {
+            width: 100%;
+            max-width: 900px;
+            margin: 30px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .custom-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .custom-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .custom-table td {
+            color: #555;
+        }
+
+        .custom-table td:first-child {
+            font-weight: bold;
+        }
+
+        /* Message Styling */
+        .title-jhowill {
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulario de Mascotas</h1>
+    <form asp-controller="Mascota" asp-action="Registrar" method="post">
+        <div class="form-group">
+            <label asp-for="FormMascota.Nombre" class="control-label"></label>
+            <input asp-for="FormMascota.Nombre" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="FormMascota.Raza" class="control-label"></label>
+            <input asp-for="FormMascota.Raza" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="FormMascota.Color" class="control-label"></label>
+            <input asp-for="FormMascota.Color" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="FormMascota.FechaNacimiento" class="control-label"></label>
+            <input asp-for="FormMascota.FechaNacimiento" class="form-control" type="date" />
+        </div>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </div>
+    </form>
+
+    <h1>Lista - Mascotas</h1>
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Raza</th>
+                <th>Color</th>
+                <th>Fecha de Nacimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListMascota)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelMascota => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelMascota => item.Raza)</td>
+                    <td>@Html.DisplayFor(modelMascota => item.Color)</td>
+                    <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3 class="title-jhowill">@ViewData["Message"]</h3>
+
+</body>
+</html>
