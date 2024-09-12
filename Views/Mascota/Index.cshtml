@@ -114,53 +114,68 @@
 </head>
 <body>
 
-    <h1>Formulario de Mascotas</h1>
-    <form asp-controller="Mascota" asp-action="Registrar" method="post">
-        <div class="form-group">
-            <label asp-for="FormMascota.Nombre" class="control-label"></label>
-            <input asp-for="FormMascota.Nombre" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="FormMascota.Raza" class="control-label"></label>
-            <input asp-for="FormMascota.Raza" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="FormMascota.Color" class="control-label"></label>
-            <input asp-for="FormMascota.Color" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label asp-for="FormMascota.FechaNacimiento" class="control-label"></label>
-            <input asp-for="FormMascota.FechaNacimiento" class="form-control" type="date" />
-        </div>
-        <div class="form-group text-center">
-            <button type="submit" class="btn btn-primary">Registrar</button>
-        </div>
-    </form>
-
-    <h1>Lista - Mascotas</h1>
-    <table class="custom-table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Raza</th>
-                <th>Color</th>
-                <th>Fecha de Nacimiento</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.ListMascota)
+    <h1 style="text-align: center;"> Formulario de Registro</h1>
+<form asp-controller="Mascota" asp-action="Insertar" method="post">
+    <input type="hidden" asp-for="FormMascota.Id" />
+    <div class="form-group">
+        <label asp-for="FormMascota.Nombre" class="control-label"></label>
+        <input asp-for="FormMascota.Nombre" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FormMascota.Raza" class="control-label"></label>
+        <input asp-for="FormMascota.Raza" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FormMascota.Color" class="control-label"></label>
+        <input asp-for="FormMascota.Color" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="FormMascota.FechaNacimiento" class="control-label"></label>
+        <input asp-for="FormMascota.FechaNacimiento" class="form-control" type="date" /> </br>
+    </div>
+    <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary">
+            @if (Model.FormMascota.Id == 0)
             {
-                <tr>
-                    <td>@Html.DisplayFor(modelMascota => item.Nombre)</td>
-                    <td>@Html.DisplayFor(modelMascota => item.Raza)</td>
-                    <td>@Html.DisplayFor(modelMascota => item.Color)</td>
-                    <td>@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
-                </tr>
+                <text>Guardar</text>
             }
-        </tbody>
-    </table>
+            else
+            {
+                <text>Actualizar</text>
+            }</button>
+    </div>
+</form>
 
-    <h3 class="title-jhowill">@ViewData["Message"]</h3>
+</br></br></br>
+<h1 style="text-align: center;">Lista de Mascotas Registradas</h1>
 
+<table class="table table-striped" style="width: 100%; border-collapse: collapse; margin: auto;">
+    <thead>
+        <tr>
+            <th style="text-align: center;">Nombre</th>
+            <th style="text-align: center;">Raza</th>
+            <th style="text-align: center;">Color</th>
+            <th style="text-align: center;">Fecha de Nacimiento</th>
+            <th style="text-align: center;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ListMascota)
+        {
+            <tr>
+                <td style="text-align: center;">@Html.DisplayFor(modelMascota => item.Nombre)</td>
+                <td style="text-align: center;">@Html.DisplayFor(modelMascota => item.Raza)</td>
+                <td style="text-align: center;">@Html.DisplayFor(modelMascota => item.Color)</td>
+                <td style="text-align: center;">@item.FechaNacimiento.ToString("dd/MM/yyyy")</td>
+                <td style="text-align: center;">
+                    <a asp-controller="Mascota" asp-action="Editar" asp-route-id="@item.Id"
+                        class="btn btn-primary">Editar</a>
+                    <a asp-controller="Mascota" asp-action="Eliminar" asp-route-id="@item.Id"
+                        class="btn btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 </body>
 </html>
